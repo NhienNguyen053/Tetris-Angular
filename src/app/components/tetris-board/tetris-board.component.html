@@ -1,0 +1,6 @@
+<div class="tetris-board">
+  <div *ngFor="let row of grid; let rowIndex = index" class="row">
+    <div *ngFor="let column of row; let colIndex = index" class="column" [ngClass]="getCellClasses(column)">
+    </div>
+  </div>
+</div>
