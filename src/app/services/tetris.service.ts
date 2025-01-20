@@ -26,7 +26,6 @@ export class TetrisService {
 
     startGameInterval(): void {
         this.gameInterval = setInterval(() => {
-            console.log(this.isRunning.value)
             if (this.isRunning.value) {
                 this.runGame();
             } else {
@@ -104,7 +103,6 @@ export class TetrisService {
         } else if (isBlocked === 'blocked' || isBlocked === 'blocked-x') {
         } else {
             this.insertTetromino();
-            this.tetrominoAtBottom = true;
         }
     }
 
@@ -118,6 +116,10 @@ export class TetrisService {
 
     startGame() {
         this.isRunning.next(true);
+        if (this.tetrominoPositions.length === 0) {
+            this.insertTetromino();
+        }
+    
         if (!this.gameInterval) {
             this.startGameInterval();
         }
@@ -125,5 +127,9 @@ export class TetrisService {
 
     stopGame() {
         this.isRunning.next(false);
+        if (this.gameInterval) {
+            clearInterval(this.gameInterval);
+            this.gameInterval = null;
+        }
     }
 }

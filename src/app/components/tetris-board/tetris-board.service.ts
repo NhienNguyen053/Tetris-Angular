@@ -80,24 +80,29 @@ export const checkForCells = (positions: { row: number; col: number }[], grid: G
     } else if (direction === "right") {
       targetCol = col + 1;
     }
-    
-    if (targetRow >= ROWS) {
-      return 'blocked-y';
-    } else if (targetCol < COLS) {
-      const targetCell = grid[targetRow][targetCol];
-      if (targetCell?.value === 1) {
+
+    if (direction === "down") {
+      if (targetRow >= ROWS) {
         return 'blocked-y';
+      } else {
+        const targetCell = grid[targetRow][targetCol];
+        if (targetCell?.value === 1) {
+          return 'blocked-y';
+        }
       }
     }
 
-    if (targetCol >= 0 && targetCol < COLS) {
-      const targetCell = grid[targetRow][targetCol];
-      if (targetCell?.value === 1) {
-        return 'blocked';
+    if (direction === "left" || direction === "right") {
+      if (targetCol < 0 || targetCol >= COLS) {
+        return 'blocked-x';
+      } else {
+        const targetCell = grid[targetRow][targetCol];
+        if (targetCell?.value === 1) {
+          return 'blocked';
+        }
       }
-    } else {
-      return 'blocked-x';
     }
   }
+  
   return 'unblocked';
 };
