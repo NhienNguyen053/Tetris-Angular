@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
     this.tetrisService.stopGame();
   }
 
+  restartGame() {
+    this.tetrisService.restartGame();
+  }
+
   @HostListener('document:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     if (!this.isRunning) return;
@@ -40,6 +44,9 @@ export class AppComponent implements OnInit {
         break;
       case 'ArrowRight':
         this.tetrisService.moveTetromino('right');
+        break;
+      case 'ArrowUp':
+        this.tetrisService.rotateTetromino();
         break;
       default:
         break;

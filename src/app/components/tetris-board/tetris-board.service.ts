@@ -49,23 +49,6 @@ export const filterPositions = (positions: { row: number; col: number }[], direc
   }
 };
 
-export const checkIfOverlap = (positions: { row: number; col: number }[], grid: Grid): boolean => {
-  for (const position of positions) {
-    const { row, col } = position;
-
-    if (row >= 0 && row < grid.length && col >= 0 && col < grid[0].length) {
-      const cell = grid[row][col];
-      
-      if (cell.value === 1) {
-        return true;
-      }
-    } else {
-      return true;
-    }
-  }
-  return false;
-};
-
 export const checkForCells = (positions: { row: number; col: number }[], grid: Grid, direction: "down" | "left" | "right") => {
   for (const position of positions) {
     const { row, col } = position;

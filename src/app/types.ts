@@ -6,7 +6,7 @@ export type Cell = {
 export type Grid = Cell[][];
 
 export type Tetromino = {
-  shape: number[][] | number[][][] | number[][][][];
+  shape: number[][];
   color: string;
 };
 
@@ -16,7 +16,7 @@ export const TETROMINOES: Record<string, Tetromino> = {
         color: "#9a00cd"
     },
     I: {
-        shape: [[1], [1], [1], [1]],
+        shape: [[1, 1, 1, 1]],
         color: "#00cdcd"
     },
     O: {
